@@ -14,10 +14,15 @@ public class SignupService {
     private UserRepository userRepository;
 
     private SignupService(UserRepository userRepository) {
+
         this.userRepository = userRepository;
     }
 
+
+    //getter을 통해서 접근해야 해서 public 접근 제한자를 가지고 있음
     public static SignupService getInstance() {
+
+        //맨 처음이면 true, 처음이면 instance에 대입하겠다 라는 뜻임
         if (Objects.isNull(instance)) {
             instance = new SignupService(UserRepository.getInstance());
         }
@@ -33,6 +38,7 @@ public class SignupService {
     }
 
     public boolean isValidPassword(String password) {
+
         return !Objects.isNull(password) && !password.isBlank();
     }
 
@@ -45,7 +51,10 @@ public class SignupService {
 
     public void signup(SignupDto signupDto) {
 //        User newUser = new User(0, signupDto.getUsername(), PasswordEncoder.encode(signupDto.getPassword()));
+
+        // UserRepository.getInstance().insert(signupDto.toUser()); 와 동일하다
         userRepository.insert(signupDto.toUser());
+
     }
 }
 

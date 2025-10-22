@@ -14,7 +14,8 @@ public class UserRepository {
         users = new User[0];
         autoIncrementId = 1;
     }
-
+    //가비지 컬렉터가 생기지 않게 ??
+    //싱글톤?? 회원정보가 사라짐
     public static UserRepository getInstance() {
         if (Objects.isNull(instance)) {
             instance = new UserRepository();

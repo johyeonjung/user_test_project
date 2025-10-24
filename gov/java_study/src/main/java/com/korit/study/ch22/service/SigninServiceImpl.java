@@ -3,6 +3,8 @@ package com.korit.study.ch22.service;
 import com.korit.study.ch22.dto.SigninDto;
 import com.korit.study.ch22.entity.User;
 import com.korit.study.ch22.repository.UserRepository;
+import com.korit.study.ch22.repository.UserRepositorylmpl;
+import com.korit.study.ch22.repository.UserRepositorylmpl2;
 import com.korit.study.ch22.util.PasswordEncoder;
 
 import java.util.Objects;
@@ -19,7 +21,7 @@ public class SigninServiceImpl implements SigninService {
 
     public static SigninServiceImpl getInstance() {
         if (Objects.isNull(instance)) {
-            instance = new SigninServiceImpl(UserRepository.getInstance());
+            instance = new SigninServiceImpl(UserRepositorylmpl.getInstance());
         }
         return instance;
     }

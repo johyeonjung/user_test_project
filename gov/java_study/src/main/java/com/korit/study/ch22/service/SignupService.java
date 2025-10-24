@@ -4,6 +4,7 @@ import com.korit.study.ch21.Singleton;
 import com.korit.study.ch22.dto.SignupDto;
 import com.korit.study.ch22.entity.User;
 import com.korit.study.ch22.repository.UserRepository;
+import com.korit.study.ch22.repository.UserRepositorylmpl;
 import com.korit.study.ch22.util.PasswordEncoder;
 
 import java.util.Objects;
@@ -12,6 +13,7 @@ public class SignupService {
     // 1. instance static 변수 정의
     private static SignupService instance;
     private UserRepository userRepository;
+    private UserRepositorylmpl userRepositorylmpl;
 
     private SignupService(UserRepository userRepository) {
 
@@ -24,7 +26,7 @@ public class SignupService {
 
         //맨 처음이면 true, 처음이면 instance에 대입하겠다 라는 뜻임
         if (Objects.isNull(instance)) {
-            instance = new SignupService(UserRepository.getInstance());
+            instance = new SignupService(UserRepositorylmpl.getInstance());
         }
         return instance;
     }
@@ -53,7 +55,7 @@ public class SignupService {
 //        User newUser = new User(0, signupDto.getUsername(), PasswordEncoder.encode(signupDto.getPassword()));
 
         // UserRepository.getInstance().insert(signupDto.toUser()); 와 동일하다
-        userRepository.insert(signupDto.toUser());
+        userRepositorylmpl.insert(signupDto.toUser());
 
     }
 }

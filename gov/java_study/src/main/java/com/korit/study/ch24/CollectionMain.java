@@ -1,8 +1,6 @@
 package com.korit.study.ch24;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class CollectionMain {
     public static void main(String[] args) {
@@ -38,6 +36,7 @@ public class CollectionMain {
 
         // 리스트 자르기
         System.out.println(list.subList(0, 2)); // 0부터 2 전까지 자르기
+        //변수에 다시 넣는거라서 원본 데이터는 바뀌지 않음 = copy
         List<String> subList = list.subList(list.indexOf("30") + 1, list.size());
         subList.indexOf("30");
         LinkedList<String> subList1 = new LinkedList<>();
@@ -62,6 +61,101 @@ public class CollectionMain {
 
         index0f30 = list.lastIndexOf("30"); //뒤에서부터 찾음
         System.out.println(index0f30);
+
+        //Set 집합
+        Set<String> strSet = new HashSet<>();
+        strSet.add("나");
+        strSet.add("다");
+        strSet.add("가");
+        System.out.println(strSet);
+
+        String r1 = null;
+        String setSerachValue = "다";
+        for(String str : strSet){
+            if(str.equals(setSerachValue)){
+                r1 = str;
+                break;
+            }
+
+        }
+        System.out.println(r1);
+        if (strSet.equals(setSerachValue)){
+            r1  = setSerachValue;
+        }
+        System.out.println(r1);
+
+        //값 삭제
+        strSet.remove("나");
+        System.out.println(strSet);
+        //값 수정
+        strSet.remove("다");
+        strSet.add("라");
+
+        System.out.println(strSet);
+
+        // 리스트 -> 세트
+        List<String> a = new ArrayList<>();
+        a.add("가");
+        a.add("가");
+        a.add("나");
+        a.add("나");
+        a.add("다");
+        a.add("라");
+        Set<String> b = new HashSet<>();
+        for (String s : a) {
+            b.add(s);
+        }
+        System.out.println(b);
+        Set<String> c = new HashSet<>();
+        c.addAll(a);
+        System.out.println(c);
+
+//        List<String> d = new ArrayList<>();
+//        d.add(10, "test");
+
+        //Map (키 + 값)
+        Map<String, String> strMap = new HashMap<>();
+
+        //값 추가
+        strMap.put("a", "김준1");
+        strMap.put("b", "김준2");
+        strMap.put("c", "김준3");
+        strMap.put("d", "김준4");
+        strMap.put("d", "김준5");
+        System.out.println(strMap);
+
+        //값 조회
+        String mapValue = strMap.get("c");
+        System.out.println(mapValue);
+        String mapValue2 = strMap.getOrDefault( "g", "기본값");
+        System.out.println(mapValue2);
+
+        //값 수정
+        strMap.put("a", "김준6");
+
+        System.out.println(strMap);
+
+        //값 삭제
+        System.out.println(  strMap.remove("a"));
+        System.out.println(  strMap.remove("a"));
+        System.out.println(  strMap.remove("b", "김준6"));
+        System.out.println(  strMap.remove("b", "김준2"));
+        System.out.println(strMap);
+        System.out.println(strMap.entrySet());
+        //Map을 반복 작업하는 방법 : Map 자료형의 Entry가 들어있는 Set자료형으로 형변환
+        for(Map.Entry<String, String> entry : strMap.entrySet()){
+            String key = entry.getKey();
+            String value = entry.getValue();
+            System.out.println(key + ":" + value);
+        }
+
+        Set<String> valuseSet = new HashSet<>();
+        valuseSet.addAll(strMap.values());
+
+
+
+
+
 
 
     }
